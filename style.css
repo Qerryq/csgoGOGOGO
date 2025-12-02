@@ -1,0 +1,406 @@
+/* 导入 CSGO 风格字体 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #e0e0e0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1a1a1a;
+    position: relative;
+}
+
+/* 模拟 CSGO 背景图和动态特效 */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 建议替换这个 URL 为一张 CSGO 场景图 */
+    background: url('https://via.placeholder.com/1920x1080/000000/FFFFFF?text=CSGO+Map+Scene') no-repeat center center/cover;
+    opacity: 0.2;
+    z-index: 0;
+    filter: grayscale(100%) brightness(50%);
+}
+
+/* 扫描线效果 */
+.background-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 1; 
+    pointer-events: none;
+    animation: scanlines 1s linear infinite;
+}
+
+/* 故障/干扰效果 */
+.background-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 100px rgba(0, 255, 255, 0.1) inset; 
+    z-index: 2;
+    pointer-events: none;
+    animation: glitch-effect 12s linear infinite alternate;
+}
+
+
+.container {
+    position: relative;
+    z-index: 1;
+    background: rgba(10, 10, 10, 0.85);
+    border: 2px solid #555;
+    box-shadow: 0 0 40px rgba(255, 153, 0, 0.5); /* 橙色光晕 */
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 650px;
+    width: 90%;
+    box-sizing: border-box;
+    animation: screen-pulse 4s infinite ease-in-out alternate;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px dashed #444;
+    padding-bottom: 15px;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+    animation: blink 1s infinite alternate;
+}
+
+.status-indicator.online {
+    background-color: #00ff00;
+    box-shadow: 0 0 8px #00ff00;
+}
+
+.alert-text {
+    color: #ff4500;
+    font-size: 1.6em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #ff4500;
+}
+
+.mission-title p {
+    font-size: 1.1em;
+    margin: 5px 0;
+    color: #c0c0c0;
+}
+
+.highlight {
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.player-status {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.player-card {
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid #333;
+    border-left: 5px solid #ff9900;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    min-width: 250px;
+    flex: 1;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.3);
+}
+
+.player-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    margin-right: 15px;
+    border: 1px solid #666;
+}
+
+.player-info {
+    flex-grow: 1;
+}
+
+.player-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #fff;
+    display: block;
+}
+
+.player-role {
+    font-size: 0.9em;
+    color: #aaa;
+    display: block;
+}
+
+.status-away {
+    color: #ff4500;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+/* CSGO 装备槽样式 */
+.equipment-slot {
+    margin: 30px 0;
+    padding: 15px;
+    border: 1px dashed #333;
+    background: rgba(15, 15, 15, 0.7);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.slot-title {
+    display: block;
+    font-size: 1.1em;
+    color: #00ffff;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.equipment-icons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    margin: 5px 0;
+}
+
+.equip-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 2px solid #ff9900; 
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5); 
+    transition: transform 0.2s;
+    cursor: help;
+}
+
+.equip-icon:hover {
+    transform: scale(1.1);
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+.item-name {
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #c0c0c0;
+    white-space: nowrap;
+}
+/* ------------------------------------------- */
+
+.comm-log {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 25px;
+    max-height: 120px;
+    overflow-y: auto;
+    font-size: 0.95em;
+    color: #b0b0b0;
+}
+
+.comm-log p {
+    margin: 5px 0;
+}
+
+.comm-log .urgent {
+    color: #ff0000;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ff0000;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    flex: 1;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 180px;
+}
+
+.btn i {
+    font-size: 1.2em;
+}
+
+.btn.deploy {
+    background-color: #ff9900;
+    color: #1a1a1a;
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.6);
+}
+
+.btn.deploy:hover {
+    background-color: #ffb03a;
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.8);
+}
+
+.btn.snooze {
+    background-color: #4a4a4a;
+    color: #e0e0e0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn.snooze:hover {
+    background-color: #6a6a6a;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.footer-info {
+    margin-top: 30px;
+    font-size: 0.85em;
+    color: #888;
+    text-align: center;
+    border-top: 1px dashed #444;
+    padding-top: 15px;
+}
+
+.footer-info p {
+    margin: 3px 0;
+}
+
+.countdown {
+    font-size: 1.1em;
+    color: #ff0000;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ff0000;
+}
+
+/* ---------------- 动画定义 ---------------- */
+@keyframes screen-pulse {
+    0% { box-shadow: 0 0 40px rgba(255, 153, 0, 0.5); }
+    50% { box-shadow: 0 0 55px rgba(255, 153, 0, 0.7); }
+    100% { box-shadow: 0 0 40px rgba(255, 153, 0, 0.5); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+@keyframes scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 50px; }
+}
+
+@keyframes glitch-effect {
+    0% {
+        transform: translate(0);
+        opacity: 0.1;
+    }
+    1% {
+        transform: translate(-2px, 2px);
+        opacity: 0.8;
+    }
+    2% {
+        transform: translate(0);
+        opacity: 0.1;
+    }
+    99% {
+        transform: translate(0);
+        opacity: 0.1;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 0.1;
+    }
+}
+
+
+/* 手机端响应式调整 */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    .alert-text {
+        font-size: 1.3em;
+    }
+    .player-card {
+        flex-direction: column;
+        text-align: center;
+        border-left: none;
+        border-top: 5px solid #ff9900;
+        min-width: unset;
+    }
+    .player-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .player-info {
+        text-align: center;
+    }
+    .status-away {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .action-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .btn {
+        width: 100%;
+        min-width: unset;
+    }
+    .equipment-icons {
+        justify-content: center;
+    }
+    .icon-wrapper {
+        width: 70px;
+    }
+}

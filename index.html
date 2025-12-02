@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSGO2 紧急召集令：陈子涵 & 邾志杰</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer></script>
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <div class="mission-briefing">
+            <div class="header">
+                <span class="status-indicator online"></span>
+                <span class="alert-text">紧急通讯：增援请求！</span>
+            </div>
+            <div class="mission-title">
+                <p>任务代号：<span class="highlight">CSGO2 - 荒漠迷城</span></p>
+                <p>任务目标：歼灭敌人，稳定经济</p>
+            </div>
+
+            <div class="player-status">
+                <div class="player-card">
+                    <img src="image.png" alt="陈子涵头像" class="player-icon">
+                    <div class="player-info">
+                        <span class="player-name">陈子涵</span>
+                        <span class="player-role">AWOL (脱离战场)</span>
+                    </div>
+                    <span class="status-away">离线已达 <span id="offlineTimeChen">72小时</span></span>
+                </div>
+                <div class="player-card">
+                    <img src="image copy.png" alt="邾志杰头像" class="player-icon">
+                    <div class="player-info">
+                        <span class="player-name">邾志杰</span>
+                        <span class="player-role">AWOL (脱离战场)</span>
+                    </div>
+                    <span class="status-away">离线已达 <span id="offlineTimeZhu">72小时</span></span>
+                </div>
+            </div>
+
+            <div class="equipment-slot">
+                <span class="slot-title">当前任务：火力压制</span>
+                <div class="equipment-icons">
+                    <div class="icon-wrapper">
+                        <img src="https://via.placeholder.com/60x60/8B0000/FFFFFF?text=AK" alt="AK-47" class="equip-icon">
+                        <span class="item-name">AK-47 (主战)</span>
+                    </div>
+                    <div class="icon-wrapper">
+                        <img src="https://via.placeholder.com/60x60/B0C4DE/000000?text=FL" alt="Flashbang" class="equip-icon">
+                        <span class="item-name">闪光弹 (F)</span>
+                    </div>
+                    <div class="icon-wrapper">
+                        <img src="https://via.placeholder.com/60x60/000000/FF0000?text=C4" alt="C4" class="equip-icon">
+                        <span class="item-name">C4 (B点)</span>
+                    </div>
+                    <div class="icon-wrapper">
+                        <img src="https://via.placeholder.com/60x60/FFA500/000000?text=KN" alt="Knife/Gloves" class="equip-icon">
+                        <span class="item-name">蝴蝶刀 (★)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comm-log">
+                <p>[系统提示]：侦测到敌方推进！</p>
+                <p>[系统提示]：我方战线危急，急需支援！</p>
+                <p class="urgent">[指挥官]：陈子涵，邾志杰，你们在哪里？！战场呼唤你们！</p>
+            </div>
+
+            <div class="action-buttons">
+                <button id="deployBtn" class="btn deploy">
+                    <i class="fas fa-crosshairs"></i> 立即部署！
+                </button>
+                <button id="snoozeBtn" class="btn snooze">
+                    <i class="fas fa-bed"></i> 再睡一会...
+                </button>
+            </div>
+
+            <div class="footer-info">
+                <p>服务器状态：在线 // 队伍：[你的队伍名] // 等待玩家中...</p>
+                <p class="countdown" id="countdownTimer">倒计时：00:10</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
